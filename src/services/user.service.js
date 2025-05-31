@@ -107,20 +107,43 @@ const userService = {
     }
   },
 
-  async updateMeWithImage(token, request, image) {
+  // New method: Update user info only (no image)
+  async updateMeInfo(token, request) {
+    try {
+      const response = await axios.put(`${API_URL}/api/user/update/me/info`, request, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      return response.data;
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        throw {
+          message: error.response.data.message || "Failed to update profile"
+        };
+      }
+      throw {
+        message: "Network error occurred while updating profile"
+      };
+    }
+  },
+
+  // New method: Update profile image only
+  async updateMeWithImage(token, image) {
     try {
       const formData = new FormData();
-      const blobRequest = new Blob([JSON.stringify(request)], { type: 'application/json' });
-      formData.append('request', blobRequest);
-      
       if (image) {
-        formData.append('image', image);
+        formData.append('image', {
+          uri: image,
+          type: 'image/jpeg',
+          name: 'profile.jpg'
+        });
       } else {
-        const emptyBlob = new Blob([], { type: 'application/octet-stream' });
-        formData.append('image', emptyBlob, 'empty');
+        formData.append('image', null); // Handle case where no image is provided
       }
       
-      const response = await axios.put(`${API_URL}/api/user/update/me`, formData, {
+      const response = await axios.put(`${API_URL}/api/user/update/me/image`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data'

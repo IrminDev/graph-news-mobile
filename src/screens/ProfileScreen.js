@@ -152,13 +152,8 @@ const ProfileScreen = () => {
   };
 
   const handleNewsPress = (article) => {
-    // Navigate to news detail screen or handle news selection
-    Toast.show({
-      type: 'info',
-      text1: 'Opening Article',
-      text2: article.title,
-      position: 'top',
-    });
+    // Navigate to NewsDetail screen
+    navigation.navigate('NewsDetail', { newsId: article.id });
   };
 
   const handleDeleteNews = async (newsId) => {
@@ -213,7 +208,10 @@ const ProfileScreen = () => {
           {item.title}
         </Text>
         <TouchableOpacity
-          onPress={() => handleDeleteNews(item.id)}
+          onPress={(e) => {
+            e.stopPropagation();
+            handleDeleteNews(item.id);
+          }}
           style={styles.deleteButton}
         >
           <Icon name="trash-2" size={16} color="#ef4444" />
@@ -379,7 +377,7 @@ const ProfileScreen = () => {
                 styles.actionCard,
                 { backgroundColor: darkMode ? 'rgba(30, 41, 59, 0.8)' : 'rgba(255, 255, 255, 0.9)' }
               ]}
-              onPress={() => navigation.navigate('Upload')}
+              onPress={() => navigation.navigate('UploadNews')}
             >
               <LinearGradient
                 colors={['#6366f1', '#8b5cf6']}
@@ -452,7 +450,7 @@ const ProfileScreen = () => {
                 </Text>
                 <TouchableOpacity
                   style={styles.uploadButton}
-                  onPress={() => navigation.navigate('Upload')}
+                  onPress={() => navigation.navigate('UploadNews')}
                 >
                   <LinearGradient
                     colors={['#6366f1', '#8b5cf6']}

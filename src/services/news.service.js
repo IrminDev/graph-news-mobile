@@ -67,9 +67,11 @@ const newsService = {
 
   async getNewsById(id) {
     try {
+      console.log('Fetching news by ID:', id);
       const response = await axios.get(`${API_URL}/api/news/${id}`);
       return response.data;
     } catch (error) {
+      console.log('Get news by ID error:', error);
       if (axios.isAxiosError(error) && error.response) {
         throw {
           message: error.response.data.message || "Failed to fetch news article"
@@ -261,6 +263,27 @@ const newsService = {
       }
       throw {
         message: "Network error occurred while fetching related news"
+      };
+    }
+  },
+
+  /**
+   * Get knowledge graph data for a specific news article
+   */
+  async getNewsGraph(newsId) {
+    try {
+      console.log('Fetching graph for news ID:', newsId);
+      const response = await axios.get(`${API_URL}/api/graph/news/${newsId}`);
+      return response.data;
+    } catch (error) {
+      console.log('Get news graph error:', error);
+      if (axios.isAxiosError(error) && error.response) {
+        throw {
+          message: error.response.data.message || "Failed to fetch graph data"
+        };
+      }
+      throw {
+        message: "Network error occurred while fetching graph data"
       };
     }
   }
