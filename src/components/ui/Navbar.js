@@ -61,12 +61,6 @@ const Navbar = ({ user, darkMode, toggleTheme, navigation }) => {
 
         {user ? (
           <View style={styles.userSection}>
-            <Text style={[
-              styles.welcomeText,
-              { color: darkMode ? '#cbd5e1' : '#64748b' }
-            ]}>
-              Hello, {user.name.split(' ')[0]}
-            </Text>
             <Button
               title="Dashboard"
               onPress={() => navigation.navigate('Profile')}

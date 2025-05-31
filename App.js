@@ -11,6 +11,7 @@ import SignInScreen from './src/screens/SignInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
 import ProfileScreen from './src/screens/ProfileScreen';
 import UploadScreen from './src/screens/UploadScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 
 const Stack = createStackNavigator();
 
@@ -49,6 +50,8 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Upload" component={UploadScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
 

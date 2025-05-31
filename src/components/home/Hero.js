@@ -119,14 +119,15 @@ const styles = StyleSheet.create({
   },
   gradientTextContainer: {
     borderRadius: 8,
-    paddingHorizontal: 4,
+    paddingHorizontal: 0,
     marginBottom: 24,
   },
   gradientTitle: {
-    fontSize: 42,
+    fontSize: 36,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: 'transparent',
+    color: '#ffffff',
+    opacity: 0.7,
     lineHeight: 48,
   },
   description: {

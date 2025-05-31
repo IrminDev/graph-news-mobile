@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Use environment variable or fallback to localhost
-const API_URL = process.env.EXPO_PUBLIC_API_URL || "http://localhost:8080";
+const API_URL = process.env.EXPO_PUBLIC_API_URL || "http://192.168.0.182:8080";
 
 const authService = {
   async login(loginRequest) {
@@ -17,6 +17,7 @@ const authService = {
           message: error.response.data.message || "Login failed"
         };
       } else {
+        console.error("Network error:", JSON.stringify(error));
         throw {
           message: "Network error occurred"
         };
