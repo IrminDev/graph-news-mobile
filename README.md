@@ -25,6 +25,11 @@ Graph News Mobile is the mobile version of the Graph News web application. This 
     npm expo start
     ```
 
+## Video: Emulation on a Physical Mobile Device
+[![Link](https://img.youtube.com/vi/Ppog7jibTaQ/0.jpg)](https://youtu.be/Ppog7jibTaQ)
+
+[Clic here to go to YouTube](https://youtu.be/Ppog7jibTaQ)
+
 ## Technologies Used
 
 - React Native (or Flutter, specify your stack)
